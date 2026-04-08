@@ -1,23 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="App">
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Navbar/>
       </header>
+
+      <div style={{ flex: 1 }}>
+        <MapContainer center={[43.5453, -5.6615]} zoom={13} style={{ height: '100%', width: '100%' }}>
+          <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        </MapContainer>
+      </div>
     </div>
   );
 }
