@@ -1,0 +1,68 @@
+.app-title  {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.75rem);
+    margin-left: 25px;
+    color: white;
+}
+
+[data-map-mode="standard"] .app-title, [data-map-mode="light"] .app-title {
+    color: rgb(48, 45, 45);
+}
+
+.title-separator {
+    border-right: 2px solid black;
+    padding-right: 20px;
+}
+
+.navbar {
+    margin-top: 50px;
+    margin-left: 160px;
+    margin-right: 160px;
+    padding: 10px;
+    display: flex;
+    border-radius: 2px;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    color: black;
+    background-color: #ffffff44;
+    border: 1px solid #ffffff44;
+    box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.520);
+    backdrop-filter: blur(8px);
+    transition: margin-left 0.7s ease, margin-right 0.7s ease;
+}
+
+.navbar.lateralbar-open {
+    margin-left: 500px;
+    margin-right: 350px;
+}
+
+[data-map-mode="light"] .navbar {
+    background-color: #00000022;
+    border-color: #00000033;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-map-mode="dark"] .navbar {
+    background-color: #1a1a2e88;
+    border-color: #4a4a8a55;
+    box-shadow: 0px 0px 4px rgba(80, 80, 200, 0.4);
+}
+
+.featured-dropdown {
+    margin-right: 20px;
+}
+
+.featured-dropdown :hover {
+    transform: translateY(-2px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+}
+
+.featured-dropdown.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    position: relative;
+    z-index: 1050;
+}

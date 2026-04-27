@@ -1,0 +1,58 @@
+.lateralbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 430px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+    transform: translateX(-100%);
+    transition: transform 0.7s ease, visibility 0s 0.7s;
+    visibility: hidden;
+}
+
+.lateralbar.visible {
+    visibility: visible;
+    transform: translateX(0);
+    transition: transform 0.7s ease;
+}
+
+.lateralbar-menu {
+    width: 14%;
+    background-color: #1a1a1a;
+    padding: 10px 0;
+    height: 100%;
+}
+
+.lateral-menu-icons {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+}
+
+.lateralbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lateralbar ul li {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lateralbar ul li p {
+    color: #fff;
+    margin: 0;
+}
+
+.lateralbar-variable {
+    width: 86%;
+    height: 100%;
+    background-color: #2a2a2a;
+    padding: 20px;
+    color: #fff;
+    /**border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;**/
+}

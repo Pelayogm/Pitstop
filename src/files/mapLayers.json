@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Mapa",
+    "url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "attribution": "© OpenStreetMap",
+    "mode": "standard"
+  },
+  {
+    "name": "Minimalista",
+    "url": "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+    "attribution": "© OpenStreetMap © CARTO",
+    "mode": "light"
+  },
+  {
+    "name": "Oscuro",
+    "url": "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+    "attribution": "© OpenStreetMap © CARTO",
+    "mode": "dark"
+  }
+]

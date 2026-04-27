@@ -1,0 +1,14 @@
+.search-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.form-control {
+    flex: 1;
+}
+
+.btn {
+    background-color: green;
+    color: white;
+}
