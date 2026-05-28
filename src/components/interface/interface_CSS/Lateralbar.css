@@ -35,24 +35,86 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.lateralbar ul li {
-    padding: 10px 15px;
+.lateralbar ul button {
+    width: 100%;
+    background: none;
+    border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.lateralbar ul li p {
-    color: #fff;
-    margin: 0;
+.lateralbar ul button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgb(16, 197, 149);
 }
 
 .lateralbar-variable {
     width: 86%;
     height: 100%;
     background-color: #2a2a2a;
-    padding: 20px;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     /**border-top-right-radius: 5px;
+    padding: 20px;
     border-bottom-right-radius: 5px;**/
+}
+
+.lateralbar-variable-content {
+    margin-top: 0.6vw;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.lateralbar-variable-content-title {
+    margin-left: 0.4vw;
+    font-size: clamp(16px, 2vw, 20px);
+    padding-bottom: 6px;
+}
+
+.lateralbar-variable-content-scroll {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    scrollbar-width: thin;
+    scrollbar-color: #bcbcbc transparent;
+}
+
+.lateralbar-variable-content-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lateralbar-variable-content-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.lateralbar-variable-content-scroll::-webkit-scrollbar-thumb {
+    background-color: #bcbcbc;
+    border-radius: 3px;
+}
+
+.lateralbar-variable-content-scroll::-webkit-scrollbar-button {
+    display: none;
+}
+
+.lateralbar-variable-content-scroll::-webkit-scrollbar-button:start:decrement,
+.lateralbar-variable-content-scroll::-webkit-scrollbar-button:end:increment {
+    display: none;
+    background: transparent;
+}
+
+.lateralbar-variable-content-scroll::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
 }
