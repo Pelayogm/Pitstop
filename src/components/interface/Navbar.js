@@ -5,20 +5,34 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import Searchbar from './Searchbar';
 import Lateralbar from './Lateralbar';
+import { useContext } from 'react';
+import { lrmCarDetailContext } from '../interface/LRM-FILES/LRM-Car-Detail-Context'
+import { loginContext } from './LOGIN-FILES/LOGIN-LoginContext';
 
 function Navbar() {
     const [show, setShow] = useState(false)
-    const [visibility, setVisibility] = useState(false)
+    const [localVisibility, setlocalVisibility] = useState(false)
+    const { car, setCar, visibility, setVisibility} = useContext(lrmCarDetailContext);
+    const { userDataPopUp } = useContext(loginContext)
+
+    const handleVisibility = () => {
+        if (visibility === true && visibility == true) {
+            setlocalVisibility(!visibility)
+            setVisibility(!visibility)
+        } else {
+            setlocalVisibility(!localVisibility)
+        }
+    }
 
     return (
         <>
-            <Lateralbar visible={visibility}/>
-            <div className={`navbar ${visibility ? 'lateralbar-open' : ''}`}>
+            <Lateralbar visible={localVisibility}/>
+            <div className={`navbar${localVisibility ? ' lateralbar-open' : ''}${visibility ? ' rightbar-open' : ''}${userDataPopUp ? ' userdata-open' : ''}`}>
                 <div className='app-title'>
                     <h1>PITSTOP</h1>
                 </div>
                 <div>
-                    <Button onClick={() => setVisibility(!visibility)}>LATERAL</Button>
+                    <Button onClick={() => handleVisibility()}>LATERAL</Button>
                 </div>
                 <Searchbar/>
 

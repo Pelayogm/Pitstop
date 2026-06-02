@@ -34,7 +34,15 @@
 
 .navbar.lateralbar-open {
     margin-left: 500px;
-    margin-right: 350px;
+    /*margin-right: 360px;*/
+}
+
+.navbar.rightbar-open {
+    margin-right: 640px;
+}
+
+.navbar.userdata-open {
+    margin-right: 360px;
 }
 
 [data-map-mode="light"] .navbar {
