@@ -1,0 +1,37 @@
+.newcartab {
+    margin-top: 0.8vw;
+    background-color: #3d3d3d;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    color: white;
+    border: none;
+    border-top: 2px solid #555;
+    border-bottom: 2px solid #555;
+}
+
+.newcartab:hover {
+    border: 1px solid rgb(16, 197, 149);
+}
+
+.newcartab-img {
+    flex-shrink: 0;
+}
+
+.newcartab-img-add {
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    width: clamp(30px, 5vw, 60px);
+    height: clamp(30px, 5vw, 60px);
+
+}
+
+.newcartab-text {
+    margin-top: 0.4vw;
+    font-weight: bold;
+    font-size: clamp(16px, 2vw, 20px);
+    flex: 1;
+}
