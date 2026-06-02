@@ -1,0 +1,136 @@
+:root {
+  --emphasis-color: rgb(16, 197, 149);
+  --border-color: rgb(122, 121, 121);
+  --font-color: rgb(255, 255, 255);
+
+  --thumb-trad-start: #e8e0d0;
+  --thumb-trad-end:   #d4c9b0;
+  --block-trad-a:     rgba(160, 120, 80, 0.5);
+  --block-trad-b:     rgba(120, 180, 100, 0.4);
+
+  --thumb-esencial-start: #f5f3ef;
+  --thumb-esencial-end:   #e9e6df;
+  --road-esencial:        rgba(200, 195, 185, 0.8);
+
+  --thumb-oscuro-start: #1a2035;
+  --thumb-oscuro-end:   #0d1320;
+  --block-oscuro-a:     rgba(80, 120, 180, 0.25);
+  --block-oscuro-b:     rgba(40, 80, 60, 0.3);
+
+  --road-light-opacity: 0.6;
+  --road-dark-opacity:  0.15;
+}
+
+.root-title {
+    margin-top: clamp(0.15rem, 4vw, 0.45rem);
+    margin-left: clamp(0.25rem, 4vw, 0.5rem);
+    margin-bottom: clamp(0.75rem, 4vw, 1.5rem);
+}
+
+.collapsable-button {
+    background-color: var(--border-color);
+    color: var(--font-color);
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 15px;
+}
+
+.collapsable-content {
+  padding: 0 16px;
+  background-color: #f1f1f1;
+  text-align: left;
+}
+
+.map-styles-list {
+  width: 100%;
+}
+
+.map-style-list-entry {
+  width: 100%;
+    display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.map-style-list-entry button,
+.map-style-list-entry-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  flex: 1;
+}
+
+.map-style-list-entry p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--font---thumb-oscuro-start);
+  border-top: 1px solid var(--border-color);
+  padding-top: 6px;
+  width: 100%;
+  text-align: center;
+}
+
+.map-thumb {
+  width: 64px;
+  height: 48px;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.thumb-trad { 
+  background: linear-gradient(135deg, var(--thumb-trad-start),     var(--thumb-trad-end));     
+}
+
+.thumb-esencial { 
+  background: linear-gradient(135deg, var(--thumb-esencial-start), var(--thumb-esencial-end)); 
+}
+
+.thumb-oscuro { 
+  background: linear-gradient(135deg, var(--thumb-oscuro-start),   var(--thumb-oscuro-end));   
+}
+
+.road {
+   position: absolute; 
+   border-radius: 1px;
+}
+.road-light {
+  background: color-mix(in srgb, var(--font-color) 60%,  transparent); 
+}
+
+.road-mid { 
+  background: var(--road-esencial); 
+}
+
+.road-dark { 
+  background: color-mix(in srgb, var(--font-color) 15%,  transparent); 
+}
+
+.block { 
+  position: absolute; 
+  border-radius: 2px; 
+}
+
+.block-trad-a { 
+  background: var(--block-trad-a);   
+}
+
+.block-trad-b { 
+  background: var(--block-trad-b);
+}
+
+.block-oscuro-a { 
+  background: var(--block-oscuro-a); 
+}
+.block-oscuro-b { 
+  background: var(--block-oscuro-b); 
+}
+
+.settings-button {
+  border: none !important;
+  width: 100%;
+}
