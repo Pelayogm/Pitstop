@@ -1,0 +1,117 @@
+.login-button {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  z-index: 900;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #ffffff44;
+  border: 1px solid #ffffff44;
+  box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  cursor: pointer;
+}
+
+.login-button-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+.login-popup {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  z-index: 900;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #ffffff44;
+  border: 1px solid #ffffff44;
+  box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  cursor: pointer;
+
+  transition:
+    width 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    align-items 0s linear 0.55s;
+}
+
+.login-popup.expanded {
+  width: 270px;
+  height: 160px;
+  border-radius: 8px;
+  align-items: flex-start;
+  cursor: default;
+}
+
+.login-popup-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+
+  position: absolute;
+  pointer-events: none;
+
+  opacity: 1;
+  transform: scale(1);
+
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.login-popup.expanded .login-popup-img {
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+.login-popup-extended {
+  position: absolute;
+  inset: 0;
+  padding: 8px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+
+  transition: opacity 0s, transform 0s;
+}
+
+.login-popup.expanded .login-popup-extended {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+
+  transition:
+    opacity 0.25s ease 0.4s,
+    transform 0.25s ease 0.4s;
+}
+
+.login-popup-title {
+    font-size: 20px;
+}

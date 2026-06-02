@@ -1,0 +1,210 @@
+:root {
+    --emphasis-color: rgb(16, 197, 149); 
+    --border-color:rgb(122, 121, 121);
+}
+
+hr {
+    display: inline;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-style: inset;
+    border-width: 1px;
+    color: white;
+    opacity: 100%;
+}
+
+.main-container-login {
+    visibility: hidden;
+    z-index: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(30, 0, 50, 0.70) 50%,
+        rgba(60, 0, 90, 0.60) 100%
+    );
+    border: 1px solid rgba(180, 100, 255, 0.20);
+    box-shadow: 
+        0px 0px 12px rgba(120, 0, 200, 0.30),
+        inset 0px 0px 20px rgba(80, 0, 140, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 16px;
+    color: white;
+    box-sizing: border-box;
+
+    width: clamp(320px, 50vw, 600px);
+    padding: 50px 56px 56px 70px;
+    gap: 24px;      
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-container-login.register {
+    padding-bottom: 80px;
+}
+
+.main-container-login.visibility {
+    visibility: visible;
+    transition: transform 0.5s ease-in-out, padding-bottom 0.8s ease;
+} 
+
+.main-container-navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main-container-close-button {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.main-container-close-button:hover {
+    background-color: red;
+    border-color: transparent;
+    transition: all 0.5s ease-out;
+}
+
+.main-container-title {
+  display: inline-block;
+  animation-duration: 600ms;
+  animation-fill-mode: both;
+}
+
+.main-container-title.login {
+  animation-name: flipDown;
+}
+
+.main-container-title.register {
+  animation-name: flipUp;
+}
+
+@keyframes flipUp {
+  0% {
+    transform: translateY(20px) rotateX(-90deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes flipDown {
+  0% {
+    transform: translateY(-20px) rotateX(90deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+  }
+}
+
+.main-container-button-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+    width: 80%;
+}
+
+.main-container-button-group button {
+    flex: 1;
+    z-index: 1;
+    background-color: transparent;
+    color: white;
+    border: none;
+    transition: color 0.3s ease;
+    padding: 0 10px;
+}
+
+.main-container-button-indicator {
+    position: absolute;
+    bottom: 0%;
+    margin-top: 10px;
+    left: 0%;
+    width: calc(100% / 2);
+    height: 2px;
+    background-color: var(--emphasis-color);
+    transition: transform 0.4s ease;
+}
+
+.main-container-button-group button:hover {
+    color: var(--emphasis-color);
+    /*border-bottom: 1px solid rgb(16, 197, 149);*/
+}
+
+.main-container-button-group button.active {
+    color: var(--emphasis-color);
+    
+}
+
+.container-form {
+    width: 100%;
+}
+
+.login-form-label {
+    opacity: 80%;
+}
+
+.login-form-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: transparent;
+    border-radius: 4px;
+    appearance: none;
+    color: white;
+    width: 100%;
+    border: solid 0.5px var(--border-color);
+    border-bottom: solid 3px var(--border-color);
+    transition: all ease-in-out 0.4s;
+}
+
+.login-form-input:hover {
+    border-bottom: solid 3px var(--emphasis-color);
+}
+
+.login-form-submit {
+    margin-top: 10px;
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 2%;
+    border-radius: 5%;
+    width: fit-content;
+    min-width: 80px;
+    cursor: pointer;
+    display: block; 
+}
+
+.registration-step-div {
+    font-size: 22px;
+}
+
+.button-container-registration-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
