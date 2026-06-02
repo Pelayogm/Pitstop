@@ -1,11 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import './App.css';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Navbar from './components/interface/Navbar.js';
 import EstacionesLayer from './components/Gasolinera';
-import mapLayer from './files/mapLayers.json';
+import mapLayerJson from './files/mapLayers.json';
 import { fetchEstaciones } from './data/combustibles';
+import LoginPopUp from './components/interface/LOGIN-FILES/LOGIN-PopUp.js';
+import { Route, Routes } from 'react-router-dom';
+import Rlateralbar from './components/interface/R-Lateralbar.js';
+import { lrmCarDetailContext } from './components/interface/LRM-FILES/LRM-Car-Detail-Context'
+import { lateralbarContext } from './components/interface/LM-FILES/Lateralbar-Context'
+import { loginContext } from './components/interface/LOGIN-FILES/LOGIN-LoginContext.js';
+import notloggedImg from './img/ui/user-not-logged.svg'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginStatusPopUp from './components/interface/LOGIN-FILES/LOGIN-Status-PopUp.js';
 
 export default function App() {
   const lat = 43.4905;
@@ -13,9 +22,23 @@ export default function App() {
 
   const [layerIndex, setLayerIndex] = useState(0);
   const [estaciones, setEstaciones] = useState([]);
+  const [car, setCar] = useState({})
 
-  const currentLayer = mapLayer[layerIndex];
-  const next = () => setLayerIndex((i) => (i + 1) % mapLayer.length);
+  const [loginPopUpVisibility, setLoginPopUpVisibility] = useState(false)
+
+  const [visibility, setVisibility] = useState(false);
+  const [lateralbarVisibility, setLateralbarVisibility] = useState(false)
+
+  const [userLoggedIn, setUserLoggedIn] = useState(false)
+  const [userDataPopUp, setUserDataPopUp] = useState(false)
+  const [userToken, setUserToken] = useState("")
+  const [userAlias, setUserAlias] = useState("")
+
+  const currentLayer = mapLayerJson[layerIndex];
+
+  const handleClick = useCallback(() => {
+    setLoginPopUpVisibility(prev => !prev)
+  }, [])
 
   useEffect(() => {
     let cancelled = false;
@@ -30,22 +53,48 @@ export default function App() {
   }, [layerIndex])
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 1000 }}>
-        <Navbar/>
-      </div>
+      <lrmCarDetailContext.Provider value={{visibility, setVisibility, car, setCar}}>
+        <lateralbarContext.Provider value={{layerIndex, setLayerIndex}}>
+          <div style={{ overflow: 'hidden' }}>
 
-      <div style={{ flex: 1, position: 'relative' }}>
-        <button className='map-switch' onClick={next}
-          style={{ position: 'absolute', top: 10, right: 10, zIndex: 1000, padding: '6px 12px', cursor: 'pointer'}}>
-          {currentLayer.name}
-        </button>
+            <loginContext.Provider value={{userToken, setUserToken, userLoggedIn, setUserLoggedIn, setLoginPopUpVisibility, setUserAlias}}>
+              <div className='pop-up-div'>
+                <LoginPopUp visibility={loginPopUpVisibility} handleClick={handleClick}/>
+              </div>
+            </loginContext.Provider>
 
-        <MapContainer center={[lat, lon]} zoom={15} style={{ height: '100%', width: '100%' }} zoomControl={false} attributionControl={false}>
-          <TileLayer key={currentLayer.url} url={currentLayer.url} attribution={currentLayer.attribution}/>
-          <EstacionesLayer estaciones={estaciones} />
-        </MapContainer>
-      </div>
-    </div>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }} className={`root-div ${loginPopUpVisibility ? 'active-blur' : ''}`}>
+              <loginContext.Provider value={{userDataPopUp}}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 900 }}>
+                  <Navbar/>
+                </div>
+              </loginContext.Provider>
+            
+
+              <div style={{ flex: 1, position: 'relative' }}>
+                { !userLoggedIn && 
+                <button className='login-account' onClick={() => setLoginPopUpVisibility(!loginPopUpVisibility)}> 
+                  <img src={notloggedImg} alt='account' className='login-account-img'/>
+                </button>
+                }
+
+                <loginContext.Provider value={{userToken, setUserToken, userLoggedIn, setUserLoggedIn, userAlias, userDataPopUp, setUserDataPopUp}}>
+                  { userLoggedIn &&
+                    <LoginStatusPopUp userAlias={userAlias} userToken={userToken}/>
+                  }
+                </loginContext.Provider>
+
+                <MapContainer center={[lat, lon]} zoom={15} style={{ height: '100%', width: '100%' }} zoomControl={false} attributionControl={false}>
+                  <TileLayer key={currentLayer.url} url={currentLayer.url} attribution={currentLayer.attribution}/>
+                  <EstacionesLayer estaciones={estaciones} />
+                </MapContainer>
+              </div>
+
+              <Rlateralbar visible={visibility}/>
+            </div>
+          </div>
+        </lateralbarContext.Provider>
+      </lrmCarDetailContext.Provider>
   );
 }
