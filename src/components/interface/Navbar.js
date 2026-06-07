@@ -8,47 +8,58 @@ import Lateralbar from './Lateralbar';
 import { useContext } from 'react';
 import { lrmCarDetailContext } from '../interface/LRM-FILES/LRM-Car-Detail-Context'
 import { loginContext } from './LOGIN-FILES/LOGIN-LoginContext';
+import { lateralbarAddCarContext } from './LM-SUBFILES/LM-MY-VEHICLES/LM-AddCar-Context';
 
 function Navbar() {
     const [show, setShow] = useState(false)
     const [localVisibility, setlocalVisibility] = useState(false)
+
     const { car, setCar, visibility, setVisibility} = useContext(lrmCarDetailContext);
     const { userDataPopUp } = useContext(loginContext)
+    const {addCarMenu, setAddCarMenu, addCarTab, setAddCarTab} = useContext(lateralbarAddCarContext)
 
     const handleVisibility = () => {
         if (visibility === true && visibility == true) {
             setlocalVisibility(!visibility)
             setVisibility(!visibility)
+            setAddCarMenu(false)
         } else {
             setlocalVisibility(!localVisibility)
+            setAddCarMenu(false)
         }
     }
 
     return (
         <>
             <Lateralbar visible={localVisibility}/>
-            <div className={`navbar${localVisibility ? ' lateralbar-open' : ''}${visibility ? ' rightbar-open' : ''}${userDataPopUp ? ' userdata-open' : ''}`}>
+            <div className={`navbar${localVisibility ? ' lateralbar-open' : ''}${visibility ? ' rightbar-open' : ''}${userDataPopUp ? ' userdata-open' : ''}${addCarMenu ? ' addCarMenu' : ''}${addCarTab ? ' addCarTab' : ''}`}>
                 <div className='app-title'>
                     <h1>PITSTOP</h1>
                 </div>
-                <div>
-                    <Button onClick={() => handleVisibility()}>LATERAL</Button>
-                </div>
-                <Searchbar/>
+                {!addCarTab &&
+                    <>
+                        <div>
+                            <Button onClick={() => handleVisibility()}>LATERAL</Button>
+                        </div>
+                        <Searchbar/>
 
-                <Dropdown show={show} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)} className='featured-dropdown'>
-                    <Dropdown.Toggle variant="secondary">
-                        Frecuentes
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                        <Dropdown.Item>Gasolina 95 E5</Dropdown.Item>
-                        <Dropdown.Item>Gasolina 98 E5</Dropdown.Item>
-                        <Dropdown.Item>Diesel A</Dropdown.Item>
-                        <Dropdown.Item>Diesel Premium (A+)</Dropdown.Item>
-                        <Dropdown.Item>GLP</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
+                        {!addCarMenu &&
+                            <Dropdown show={show} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)} className='featured-dropdown'>
+                                <Dropdown.Toggle variant="secondary">
+                                    Frecuentes
+                                </Dropdown.Toggle>
+                        
+                                <Dropdown.Menu>
+                                    <Dropdown.Item>Gasolina 95 E5</Dropdown.Item>
+                                    <Dropdown.Item>Gasolina 98 E5</Dropdown.Item>
+                                    <Dropdown.Item>Diesel A</Dropdown.Item>
+                                    <Dropdown.Item>Diesel Premium (A+)</Dropdown.Item>
+                                    <Dropdown.Item>GLP</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        }
+                    </>
+                }
             </div>
         </>
     );

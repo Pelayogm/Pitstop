@@ -45,6 +45,15 @@
     margin-right: 360px;
 }
 
+.navbar.addCarMenu {
+    margin-left: 1220px;
+    transition: margin-left 1.1s ease-out,
+}
+
+.navbar.addCarTab {
+    margin-left: 1560px;
+}
+
 [data-map-mode="light"] .navbar {
     background-color: #00000022;
     border-color: #00000033;
