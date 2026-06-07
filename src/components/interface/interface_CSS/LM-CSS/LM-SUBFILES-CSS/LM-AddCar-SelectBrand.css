@@ -1,0 +1,90 @@
+:root {
+    --emphasis-color: rgb(16, 197, 149);
+    --font-color: rgb(255, 255, 255);
+    --fill-color: #2a2a2a;
+    --fill-color-teal: #083d2c;
+}
+
+.root-select-carbrand {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.select-carbrand-navbar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 8px;
+}
+
+.select-carbrand-navbar-buttons {
+    width: 20%;
+}
+
+.navbar-button {
+    align-self: center;
+    background-color: var(--fill-color);
+    border: solid 1px var(--font-color);
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.select-carbrand-navbar-searchbar {
+    width: 80%;
+}
+
+.select-carbrand-body {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+    flex: 1;
+    overflow: hidden;
+}
+
+.select-carbrand-content-scroll {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: start;
+    gap: 10px;
+    padding: 16px 16px 32px;
+    scrollbar-width: thin;
+    scrollbar-color: #bcbcbc transparent;
+}
+
+.select-carbrand-content-scroll h1 {
+    grid-column: 1 / -1;
+}
+
+.select-carbrand-content-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.select-carbrand-content-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.select-carbrand-content-scroll::-webkit-scrollbar-thumb {
+    background-color: #bcbcbc;
+    border-radius: 3px;
+}
+
+.select-carbrand-content-scroll::-webkit-scrollbar-button {
+    display: none;
+}
+
+.select-carbrand-content-scroll::-webkit-scrollbar-button:start:decrement,
+.select-carbrand-content-scroll::-webkit-scrollbar-button:end:increment {
+    display: none;
+    background: transparent;
+}
+
+.select-carbrand-content-scroll::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
