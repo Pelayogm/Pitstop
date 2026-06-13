@@ -2,6 +2,8 @@ import '../interface_CSS/LM-CSS/LM-Settings-Menu.css'
 import { lateralbarContext } from '../LM-FILES/Lateralbar-Context'
 import { useState, useEffect, useContext } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
+import temaClaro from '../../../img/ui/tema-claro.svg'
+import temaOscuro from '../../../img/ui/tema-oscuro.svg'
 
 export default function SettingsMenu() {
     const { layerIndex, setLayerIndex } = useContext(lateralbarContext);
@@ -55,11 +57,11 @@ export default function SettingsMenu() {
                                 <ul className="map-styles-list">
                                     <li className="map-style-list-entry">
                                         <div className="map-style-list-entry-div">
-                                            <img></img>
+                                            <img src={temaClaro}/>
                                             <p>Claro</p>
                                         </div>
                                         <div className="map-style-list-entry-div">
-                                            <img></img>
+                                            <img src={temaOscuro}/>
                                             <p>Oscuro</p>
                                         </div>
                                     </li>
