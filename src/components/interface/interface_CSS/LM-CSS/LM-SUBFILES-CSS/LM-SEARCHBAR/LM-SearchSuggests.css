@@ -1,0 +1,93 @@
+.root-lm-search-suggestions {
+  --lm-ss-row-h: 48px;
+  --lm-ss-sp: 1;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin-top: 0.5rem;
+  z-index: 1000;
+
+  background: #F7F7F7;
+  border-radius: 18px;
+  padding: 18px 18px 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+
+  font-family: "Archivo", system-ui, sans-serif;
+  color: #111111;
+
+  display: none;
+}
+
+.root-lm-search-suggestions.visible {
+  display: block;
+}
+
+.lm-search-container-header {
+  margin: 0 4px 14px;
+}
+.lm-search-container-header p {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  opacity: 0;
+}
+.root-lm-search-suggestions.visible .lm-search-container-header p {
+  animation: lm-ss-fade calc(0.3s * var(--lm-ss-sp)) ease-out forwards;
+}
+
+.lm-search-container-content { position: relative; }
+.root-lm-search-suggestions .list-group {
+  position: static !important;
+  top: auto !important;
+  margin: 0 !important;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.root-lm-search-suggestions .list-group-item {
+  position: relative;
+  height: var(--lm-ss-row-h);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border: none;
+  border-radius: 0;
+  background: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.root-lm-search-suggestions.visible .list-group-item {
+  animation: lm-ss-wipe calc(0.4s * var(--lm-ss-sp))
+             calc(var(--i, 0) * 0.08s * var(--lm-ss-sp))
+             cubic-bezier(0.65, 0, 0.25, 1) forwards;
+}
+.root-lm-search-suggestions .list-group-item:hover {
+  background: #0C0C0C;
+  color: #FFFFFF;
+}
+
+@keyframes lm-ss-fade { to { opacity: 1; } }
+@keyframes lm-ss-wipe { to { transform: scaleX(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .root-lm-search-suggestions.visible .lm-search-container-header p,
+  .root-lm-search-suggestions.visible .list-group-item {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+  }
+}

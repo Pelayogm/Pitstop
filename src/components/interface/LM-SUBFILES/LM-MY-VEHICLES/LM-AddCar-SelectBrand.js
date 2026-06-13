@@ -6,6 +6,7 @@ import CarBrandGroup from "./LM-Car-BrandGroup"
 import '../../interface_CSS/LM-CSS/LM-SUBFILES-CSS/LM-AddCar-SelectBrand.css'
 import addCarSelectCar from "./LM-AddCar-SelectCar"
 import AddCarSelectCar from "./LM-AddCar-SelectCar"
+import LMSearchBar from "./SEARCHBAR/LM-SearchBar"
 
 export default function AddCarSelectBrand() {
 
@@ -112,7 +113,7 @@ export default function AddCarSelectBrand() {
                                 <Button onClick={() => setGroupSearch(!groupSearch)} className={"navbar-button"}>Cambiar</Button>
                             </div>
                             <div className="select-carbrand-navbar-searchbar">
-
+                                <LMSearchBar/>
                             </div>
                         </div>
                         <div className="select-carbrand-body">
