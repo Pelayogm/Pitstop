@@ -24,23 +24,21 @@
 }
 
 .lateralbar-variable-extended {
-    width: 1120px;
+    width: min(1120px, calc(100vw - 70px));
     flex-shrink: 0;
     background-color: #2a2a2a;
     overflow: hidden;
-    animation: expandPanel 1.5s ease forwards;
+    animation: expandPanel 1.5s ease;
+    transition: width 0.8s ease;
 }
 
 .lateralbar-variable-extended.carTabOpen {
-    width: 1440px;
-    flex-shrink: 0;
-    background-color: #2a2a2a;
-    overflow: hidden;
-    animation: expandPanelPlus 1.5s ease forwards;
+    width: min(1440px, calc(100vw - 70px));
 }
 
 .lateralbar-menu {
-    width: 16%;
+    width: 70px;
+    flex-shrink: 0;
     background-color: #1a1a1a;
     padding: 12px 0;
     height: 100%;
@@ -63,7 +61,7 @@
 .lateralbar ul button {
     width: 100%;
     background: none;
-    border: none;
+    border: 1px solid transparent;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px 16px;
     cursor: pointer;
@@ -74,40 +72,27 @@
 
 .lateralbar ul button:hover {
     background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgb(16, 197, 149);
+    border: rgb(16, 197, 149);
 }
 
 .lateralbar-variable {
-    width: 90%;
+    flex: 1;
+    min-width: 0;
     height: 100%;
     background-color: #2a2a2a;
     color: #fff;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    /**border-top-right-radius: 5px;
-    padding: 20px;
-    border-bottom-right-radius: 5px;**/
 }
 
 @keyframes expandPanel {
     from {
-        width: 440px;
+        width: min(440px, 100vw);
         opacity: 0;
     }
     to {
-        width: 1120px;
-        opacity: 1;
-    }
-}
-
-@keyframes expandPanelPlus {
-    from {
-        width: 1120px;
-        opacity: 10;
-    }
-    to {
-        width: 1440px;
+        width: min(1120px, calc(100vw - 70px));
         opacity: 1;
     }
 }
