@@ -21,6 +21,7 @@ export default function AddCarSelectCar({brand, handleExit}) {
 
     const handleModels = async () => {
         debugger
+        setModelsNameList([])
         try {
             const response = await fetch(`http://localhost:8080/pitstop/cars/models/each/byBrandId?id=${brand.id}`, {
                 method: "GET",
@@ -42,6 +43,7 @@ export default function AddCarSelectCar({brand, handleExit}) {
 
     const searchModel = async (modelName) => {
         debugger
+        setModelListGenList([])
         console.log(modelName)
         try {
             const response = await fetch(`http://localhost:8080/pitstop/cars/models/byName?name=${modelName.model}`, {
@@ -95,7 +97,7 @@ export default function AddCarSelectCar({brand, handleExit}) {
                                 <Accordion.Body className="lateral-scroll-bar-model-selection-options">
                                     <ul className="model-selection-options-list">
                                         {modelListGenList.map((modelItem, index) => (
-                                            <li className="model-selection-options-list-entry">
+                                            <li key={modelItem.code ?? index} className="model-selection-options-list-entry">
                                                 <Button onClick={() => setSelectedModel(modelItem)} className="model-selection-options-button">
                                                     {modelItem.modelYear} - {modelItem.brand} {modelItem.name} ({modelItem.code})
                                                 </Button>
