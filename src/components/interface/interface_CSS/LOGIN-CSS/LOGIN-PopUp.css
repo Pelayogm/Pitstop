@@ -1,6 +1,7 @@
 :root {
-    --emphasis-color: rgb(16, 197, 149); 
-    --border-color:rgb(122, 121, 121);
+    --emphasis-color: rgb(16, 197, 149);
+    --border-color: rgb(122, 121, 121);
+    --danger-color: rgb(255, 82, 82);
 }
 
 hr {
@@ -18,6 +19,7 @@ hr {
 
 .main-container-login {
     visibility: hidden;
+    opacity: 0;
     z-index: 1000;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(
@@ -27,7 +29,7 @@ hr {
         rgba(60, 0, 90, 0.60) 100%
     );
     border: 1px solid rgba(180, 100, 255, 0.20);
-    box-shadow: 
+    box-shadow:
         0px 0px 12px rgba(120, 0, 200, 0.30),
         inset 0px 0px 20px rgba(80, 0, 140, 0.15);
     backdrop-filter: blur(12px);
@@ -35,33 +37,31 @@ hr {
     position: absolute;
     top: 10%;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -16px) scale(0.98);
     border-radius: 16px;
     color: white;
     box-sizing: border-box;
 
     width: clamp(320px, 50vw, 600px);
-    padding: 50px 56px 56px 70px;
-    gap: 24px;      
+    padding: 48px 56px 56px;
+    gap: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.main-container-login.register {
-    padding-bottom: 80px;
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
 }
 
 .main-container-login.visibility {
     visibility: visible;
-    transition: transform 0.5s ease-in-out, padding-bottom 0.8s ease;
-} 
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s;
+}
 
 .main-container-navbar {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     justify-content: space-between;
     width: 100%;
     box-sizing: border-box;
@@ -79,41 +79,39 @@ hr {
 }
 
 .main-container-title {
-  display: inline-block;
-  animation-duration: 600ms;
-  animation-fill-mode: both;
+    display: inline-block;
+    animation-duration: 600ms;
+    animation-fill-mode: both;
 }
 
 .main-container-title.login {
-  animation-name: flipDown;
+    animation-name: flipDown;
 }
 
 .main-container-title.register {
-  animation-name: flipUp;
+    animation-name: flipUp;
 }
 
 @keyframes flipUp {
-  0% {
-    transform: translateY(20px) rotateX(-90deg);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0) rotateX(0);
-    opacity: 1;
-  }
+    0% {
+        transform: translateY(20px) rotateX(-90deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) rotateX(0);
+        opacity: 1;
+    }
 }
 
 @keyframes flipDown {
-  0% {
-    transform: translateY(-20px) rotateX(90deg);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0) rotateX(0);
-    opacity: 1;
-  }
+    0% {
+        transform: translateY(-20px) rotateX(90deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) rotateX(0);
+        opacity: 1;
+    }
 }
 
 .main-container-button-group {
@@ -133,13 +131,13 @@ hr {
     color: white;
     border: none;
     transition: color 0.3s ease;
-    padding: 0 10px;
+    padding: 6px 10px;
+    font-size: 15px;
 }
 
 .main-container-button-indicator {
     position: absolute;
     bottom: 0%;
-    margin-top: 10px;
     left: 0%;
     width: calc(100% / 2);
     height: 2px;
@@ -149,40 +147,199 @@ hr {
 
 .main-container-button-group button:hover {
     color: var(--emphasis-color);
-    /*border-bottom: 1px solid rgb(16, 197, 149);*/
 }
 
 .main-container-button-group button.active {
     color: var(--emphasis-color);
-    
 }
 
 .container-form {
     width: 100%;
+    overflow: hidden;
+    transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.container-form-inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container-login-form,
+.container-register-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.registration-main-form-div {
+    width: 100%;
+}
+
+.registration-step-div {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.registration-step-field {
+    margin-bottom: 14px;
 }
 
 .login-form-label {
-    opacity: 80%;
+    opacity: 0.8;
+    display: block;
+    margin: 0 0 6px;
+    font-size: 14.5px;
+}
+
+.container-login-form .login-form-label {
+    margin-top: 14px;
+}
+
+.container-login-form .login-form-label:first-child {
+    margin-top: 0;
 }
 
 .login-form-input {
     -webkit-appearance: none;
     -moz-appearance: none;
-    
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: transparent;
-    border-radius: 4px;
     appearance: none;
+    margin: 0;
+    background-color: transparent;
+    border-radius: 6px;
     color: white;
     width: 100%;
-    border: solid 0.5px var(--border-color);
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 15px;
+    font-family: inherit;
+    border: solid 1px var(--border-color);
     border-bottom: solid 3px var(--border-color);
-    transition: all ease-in-out 0.4s;
+    outline: none;
+    transition: border-color 0.35s ease;
 }
 
-.login-form-input:hover {
-    border-bottom: solid 3px var(--emphasis-color);
+.login-form-input:hover,
+.login-form-input:focus {
+    border-bottom-color: var(--emphasis-color);
+}
+
+.password-field-wrapper {
+    width: 100%;
+}
+
+.password-input-row {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-row .login-form-input {
+    padding-right: 42px;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 4px;
+    color: rgba(255, 255, 255, 0.65);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: color 0.25s ease;
+}
+
+.password-toggle-btn:hover {
+    color: var(--emphasis-color);
+}
+
+.login-form-input.with-meter,
+.login-form-input.with-meter:hover,
+.login-form-input.with-meter:focus {
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+}
+
+.password-strength-track {
+    width: 100%;
+    height: 3px;
+    background-color: var(--border-color);
+    border-radius: 0 0 6px 6px;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.password-strength-bar.ok {
+    background-color: var(--emphasis-color);
+}
+
+.password-strength-bar.bad {
+    background-color: var(--danger-color);
+}
+
+.password-requirements {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: linear-gradient(135deg, rgba(15, 0, 30, 0.65), rgba(50, 0, 85, 0.55));
+    border: 1px solid rgba(180, 100, 255, 0.25);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 13.5px;
+    animation: glassFadeIn 0.25s ease;
+}
+
+.password-requirements li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.25s ease;
+}
+
+.password-requirements li.met {
+    color: var(--emphasis-color);
+}
+
+.password-requirements li.unmet {
+    color: var(--danger-color);
+}
+
+.req-icon {
+    width: 14px;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.password-error {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--danger-color);
+}
+
+@keyframes glassFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .login-form-submit {
@@ -190,21 +347,188 @@ hr {
     color: white;
     background-color: transparent;
     border: 1px solid white;
-    padding: 2%;
-    border-radius: 5%;
-    width: fit-content;
-    min-width: 80px;
+    padding: 0 18px;
+    border-radius: 8px;
+    min-width: 150px;
+    height: 44px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: inherit;
+    text-align: center;
     cursor: pointer;
-    display: block; 
+    display: inline-block;
+    transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
 }
 
-.registration-step-div {
-    font-size: 22px;
+.login-form-submit:hover {
+    border-color: var(--emphasis-color);
+    color: var(--emphasis-color);
+    background-color: rgba(16, 197, 149, 0.08);
+}
+
+.container-login-form .login-form-submit {
+    align-self: center;
+    margin-top: 18px;
 }
 
 .button-container-registration-form {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.button-container-registration-form .login-form-submit {
+    margin-top: 0;
+    flex: 0 0 auto;
+}
+
+.glass-datepicker {
+    position: relative;
+    width: 100%;
+}
+
+.glass-datepicker-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    font-size: 15px;
+}
+
+.glass-datepicker-placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.glass-datepicker-hidden-input {
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    border: none;
+    padding: 0;
+    background: transparent;
+    pointer-events: none;
+}
+
+.glass-datepicker-panel {
+    margin-top: 10px;
+    padding: 14px;
+    background: linear-gradient(135deg, rgba(12, 0, 26, 0.78) 0%, rgba(45, 0, 82, 0.66) 100%);
+    border: 1px solid rgba(180, 100, 255, 0.30);
+    border-radius: 14px;
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.45),
+        inset 0 0 18px rgba(120, 0, 200, 0.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    animation: glassFadeIn 0.25s ease;
+}
+
+.glass-datepicker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.glass-datepicker-label {
+    flex: 1;
+    text-align: center;
+    font-size: 14.5px;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+}
+
+.glass-datepicker-nav {
+    background: transparent;
+    border: 1px solid transparent;
+    color: white;
+    font-size: 16px;
+    line-height: 1;
+    padding: 4px 9px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.glass-datepicker-nav:hover:not(:disabled) {
+    color: var(--emphasis-color);
+    border-color: rgba(16, 197, 149, 0.45);
+    background-color: rgba(16, 197, 149, 0.08);
+}
+
+.glass-datepicker-nav:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+.glass-datepicker-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.glass-datepicker-weekday {
+    text-align: center;
+    font-size: 11px;
+    opacity: 0.55;
+    padding: 4px 0;
+    text-transform: uppercase;
+}
+
+.glass-datepicker-day {
+    aspect-ratio: 1 / 1;
+    min-height: 30px;
+    display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.glass-datepicker-day:hover:not(:disabled) {
+    background-color: rgba(16, 197, 149, 0.14);
+    border-color: rgba(16, 197, 149, 0.45);
+}
+
+.glass-datepicker-day.selected {
+    background-color: var(--emphasis-color);
+    color: rgb(8, 25, 20);
+    font-weight: 600;
+}
+
+.glass-datepicker-day:disabled {
+    opacity: 0.22;
+    cursor: not-allowed;
+}
+
+.glass-datepicker-day.empty {
+    visibility: hidden;
+}
+
+.glass-datepicker-footnote {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 11.5px;
+    opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+    .main-container-login {
+        padding: 36px 24px 40px;
+    }
 }
